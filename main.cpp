@@ -12,7 +12,11 @@ static const char dot = '.';
 
 struct Ip
 {
+#ifdef WIN32
     __int32 ip;
+#else
+    __int32_t ip;
+#endif
 
     int oct3() const {return (ip >> 24) & 0x000000FF;}
     int oct2() const {return (ip >> 16) & 0x000000FF;}
