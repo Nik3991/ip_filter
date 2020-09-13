@@ -13,7 +13,7 @@ else()
 endif()
 
 if (NOT Boost_FOUND)
-    message("___BOOST NOT FOUND___")
+    message("___BOOST NOT FOUNT___")
 endif()
 
 #include_directories(${Boost_INCLUDE_DIRS})
@@ -22,9 +22,9 @@ link_directories(${Boost_LIBRARY_DIRS})
 #---------------------------
 
 add_executable(ip_filter main.cpp)
-add_executable(tests_ tests_.cpp)
+add_executable(tests tests.cpp)
 
-set_target_properties(ip_filter tests_ PROPERTIES
+set_target_properties(ip_filter tests PROPERTIES
         CXX_STANDART 17
         CXX_STANDART_REQUIRED ON
 if (NOT WIN32)
@@ -32,13 +32,12 @@ if (NOT WIN32)
 else()
 )
 
-set_target_properties(tests_ PROPERTIES
+set_target_properties(tests PROPERTIES
         COMPILE_DEFINIITIONS BOOST_TEST_DYN_LINK
         INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR}
 )
 
-target_link_libraries (tests_ ${Boost_LIBRARIES})
-target_link_libraries (ip_filter)
+target_link_libraries (tests ${Boost_LIBRARIES})
 
 #---------------------------
 
@@ -57,4 +56,4 @@ include(CPack)
 
 enable_testing()
 
-add_test(run_tests tests_)
+add_test(run_tests tests)
