@@ -13,7 +13,7 @@ else()
 endif()
 
 if (NOT Boost_FOUND)
-    message("___BOOST NOT FOUNT___")
+    message("___BOOST NOT FOUND___")
 endif()
 
 #include_directories(${Boost_INCLUDE_DIRS})
