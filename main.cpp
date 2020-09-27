@@ -1,29 +1,30 @@
-#include <cassert>
-#include <cstdlib>
 #include <iostream>
 #include <string>
 #include <vector>
 #include <algorithm>
-#include <bitset>
 
 using namespace std;
 
-static const char dot = '.';
+namespace {
+    static const char dot = '.';
+}
 
 struct Ip
 {
 #ifdef WIN32
-    __int32 ip;
+    using ip_t = __int32;
 #else
-    __int32_t ip;
+    using ip_t = __int32_t;
 #endif
+
+    ip_t ip;
 
     int oct3() const {return (ip >> 24) & 0x000000FF;}
     int oct2() const {return (ip >> 16) & 0x000000FF;}
     int oct1() const {return (ip >> 8) & 0x000000FF;}
     int oct0() const {return ip & 0x000000FF;}
 
-    bool operator<(Ip& _ip)
+    bool operator<(const Ip& _ip) const
     {
         bool result = false;
         auto is_equal = [&](int _o1, int _o2)
