@@ -6,7 +6,7 @@
 using namespace std;
 
 namespace {
-    static const char dot = '.';
+    const char dot = '.';
 }
 
 struct Ip
